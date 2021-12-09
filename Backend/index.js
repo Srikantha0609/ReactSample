@@ -18,7 +18,7 @@ app.post('/signup',(req,res) =>{
             res.send("User Already exists");
         }
         else{
-            res.send("Successfully logged in");
+            res.send("Successfully registered. Please Login");
         }
     })
     
@@ -29,7 +29,7 @@ app.post('/login',(req,res) =>{
     console.log(req.body);
     connection.query(sql,(err,result)=>{
         console.log(result[0],req.body.password);
-        if(result.length > 0 && (result[0].password=='null' || result[0].password === req.body.password)){
+        if(result.length > 0 && (result[0].password === 'null' || result[0].password === req.body.password)){
             res.send(result[0]);
         }
         else{

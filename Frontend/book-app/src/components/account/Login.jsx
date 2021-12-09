@@ -5,17 +5,16 @@ import {Dialog} from '@material-ui/core';
 import LoginForm from './LoginForm';
 
 const Login = ({login,setLogin}) => {
-    const [open,setOpen] = new useState(true)
-    const {account} = useContext(AccountContext);
+    const {openLogin,setOpenLogin} = useContext(AccountContext);
     const handleClose = () =>{
-        setOpen(false)
+        setOpenLogin(false)
         const newlogin = {...login,status:false,color:'#fff'}
         setLogin(newlogin)
     }
     return (
         <>
       <Dialog
-        open={account === null && open}
+        open={openLogin}
         onClose={handleClose}
       > <LoginForm/>
       </Dialog>

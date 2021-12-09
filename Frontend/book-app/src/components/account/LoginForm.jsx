@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const LoginForm = () =>{
 
-      const {setAccount} = useContext(AccountContext);
+      const {setAccount,setOpenLogin,setOpenSignup} = useContext(AccountContext);
 
       const [email,setemail] = useState("");
       const [password,setpassword] = useState("");
@@ -33,6 +33,8 @@ const LoginForm = () =>{
           }catch(e){
               console.log("error : ",e);
           }
+          setOpenLogin(false);
+          setOpenSignup(false);
         };
 
         const handleChange = (event) => {
@@ -66,6 +68,8 @@ const LoginForm = () =>{
             }catch(e){
                 console.log("error : ",e);
             }
+            setOpenLogin(false);
+            setOpenSignup(false);
         };
     return (
       <div className="wrapper" style={{height:'auto'}}>

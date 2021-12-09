@@ -7,7 +7,7 @@ import { AccountContext } from '../components/context/AccountProvider';
 const NavBar = () => {
     const [login,setLogin] = useState({color:'#ffffff',status:false});
     const [signup,setSignup] = useState({color:'#ffffff',status:false});
-    const {account,setAccount} = useContext(AccountContext);
+    const {account,setAccount,openLogin,openSignup,setOpenLogin,setOpenSignup} = useContext(AccountContext);
     console.log(login,signup)
     const classes = makeStyles({
         component:{
@@ -44,6 +44,7 @@ const NavBar = () => {
         }
         setSignup(newsignup);
         setLogin(newlogin);
+        setOpenSignup(true);
     }
     const handleLogin = () =>{
         const newsignup = {...signup,
@@ -57,9 +58,11 @@ const NavBar = () => {
         }
         setLogin(newlogin);
         setSignup(newsignup);
+        setOpenLogin(true);
     }
     const handleLogout = () =>{
-        setTimeout({},500);
+        setOpenLogin(false);
+        setOpenSignup(false);
         alert("You have been successfully logged out");
         setAccount(null);
     }

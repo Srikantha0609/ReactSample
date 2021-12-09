@@ -20,6 +20,7 @@ const onLoginSuccess = async (res) => {
             "password" : null,
             "image":res.profileObj.imageUrl,
         }
+        console.log(user.password,typeof(user.password));
         await axios.post('http://localhost:3002/signup',user)
         .then((res) => alert(res.data))
         .catch((err) => console.log(err))
@@ -35,7 +36,7 @@ export default class SignupForm extends Component {
       firstName: "",
       lastName: "",
       email: "",
-      password: "",
+      password: null,
       errors: {
         email: "",
         password: "",
@@ -83,7 +84,7 @@ export default class SignupForm extends Component {
                     "firstName": this.state.firstName,
                     "lastName" : this.state.lastName,
                     "email" : this.state.email,
-                    "password" : this.state.password,
+                    "password" : this.state.password === "" ? null : this.state.password,
                     "image": 'http://shift.tools/assets/icons/general-user-b0d8abffed32297721ea9c0e12b96cbc08da894ce401d233f9c955a25edbc3c4.png',
                 }
                 await axios.post('http://localhost:3002/signup',user)
