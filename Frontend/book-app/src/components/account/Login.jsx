@@ -1,33 +1,24 @@
-import React, {useContext} from 'react'
-import {Box} from '@material-ui/core';
-import {GoogleLogin} from 'react-google-login';
+import React, {useContext,useState} from 'react'
+// import {GoogleLogin} from 'react-google-login';
 import { AccountContext } from '../context/AccountProvider';
-const Login = () => {
-    const clientId = '302216821423-ee78r5k3q8jm583lebntmjkh90qinhsr.apps.googleusercontent.com';
-    const {setAccount} = useContext(AccountContext);
-    const onLoginFailure = () =>{
-        console.log("failed");
+import {Dialog} from '@material-ui/core';
+import LoginForm from './LoginForm';
+
+const Login = ({login,setLogin}) => {
+    const [open,setOpen] = new useState(true)
+    const {account} = useContext(AccountContext);
+    const handleClose = () =>{
+        setOpen(false)
+        const newlogin = {...login,status:false,color:'#fff'}
+        setLogin(newlogin)
     }
-    const onLoginSuccess = (res) =>{
-        console.log('Login successfull',res.profileObj);
-        console.log(res);
-    };
     return (
         <>
-        <Box>
-            <Box>SignUp
-            </Box>
-            <Box>Login
-            </Box>
-        </Box>
-        <GoogleLogin
-            clientId = {clientId}
-            isSignedIn={true}
-            buttonText=""
-            onSuccess={onLoginSuccess}
-            onFailure={onLoginFailure}
-            cookiePolicy={'single_host_origin'}
-        />
+      <Dialog
+        open={account === null && open}
+        onClose={handleClose}
+      > <LoginForm/>
+      </Dialog>
         </>
     )
 }

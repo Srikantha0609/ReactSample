@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "firstTutoDB",
+    "database": "sample",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
